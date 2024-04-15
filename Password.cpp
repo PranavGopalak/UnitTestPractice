@@ -18,3 +18,17 @@ int Password::count_leading_characters(string phrase){
   }
   return repetition;
 }
+
+bool Password::has_mixed_case(string phrase) {
+    bool has_upper = false;
+    bool has_lower = false;
+
+    for (char ch : phrase) {
+      if (std::isupper(ch)) has_upper = true;
+      if (std::islower(ch)) has_lower = true;
+
+      if (has_upper && has_lower) return true; // Return early if both conditions are met
+    }
+
+    return false; // Return false if not both uppercase and lowercase characters are found
+}
