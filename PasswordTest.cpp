@@ -35,3 +35,28 @@ TEST(PasswordTest, CaseSingleCharacter) {
     Password password;
     ASSERT_EQ(1, password.count_leading_characters("A"));
 }
+
+TEST(PasswordTest, MixedCaseWithNumbers) {
+    Password password;
+    ASSERT_TRUE(password.has_mixed_case("a1B2c3"));
+}
+
+TEST(PasswordTest, AllLowercase) {
+    Password password;
+    ASSERT_FALSE(password.has_mixed_case("aaaa"));
+}
+
+TEST(PasswordTest, AllUppercase) {
+    Password password;
+    ASSERT_FALSE(password.has_mixed_case("AAAA"));
+}
+
+TEST(PasswordTest, AllIdenticalCharacters) {
+    Password password;
+    ASSERT_EQ(5, password.count_leading_characters("AAAAA"));
+}
+
+TEST(PasswordTest, WithWhitespaceAndSpecialChars) {
+    Password password;
+    ASSERT_FALSE(password.has_mixed_case("   @#$"));
+}
